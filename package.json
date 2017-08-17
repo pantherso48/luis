@@ -1,0 +1,20 @@
+{
+  "name": "luis",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "botbuilder": "^3.9.0",
+    "dotenv": "^4.0.0",
+    "dotenv-extended": "^2.0.1",
+    "fs": "0.0.1-security",
+    "restify": "^5.1.0",
+    "util": "^0.10.3"
+  }
+}
