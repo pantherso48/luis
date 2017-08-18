@@ -47,27 +47,24 @@ bot.dialog('/', intents);
 intents.matches('getBilling', (session, results) => {
   // session.userData.serverpath = 'http://26bb457d.ngrok.io';
 
-
-  fs.readFile('./thought_leaders_in_ai.png', function (err, data) {
-      if (err) {
-          return session.send('Oops. Error reading file.');
-      }
-      if (results.entities[0].score >= .51) {
-        var contentType = 'image/png';
-        var base64 = Buffer.from(data).toString('base64');
-        var reply = new builder.Message(session)
-               .text('Your Kronos code is MSABC001 and your business development code is BDXYZ123.')
-               .addAttachment({ contentUrl: util.format('data:%s;base64,%s', contentType, base64),
-                                contentType: contentType,
-                                name: 'AI.png'
-                              });
-        session.send(reply);
-    }
-    console.log("Codes : "+results.entities[0].entity);
-    // else {
-    //     console.log("Score too low : "+results.entities[0].entity);
-    // }
-  })
+   session.send('Your Kronos code is MSABC001 and your business development code is BDXYZ123.');
+  // fs.readFile('./thought_leaders_in_ai.png', function (err, data) {
+  //     if (err) {
+  //         return session.send('Oops. Error reading file.');
+  //     }
+  //     if (results.entities[0].score >= .51) {
+  //       var contentType = 'image/png';
+  //       var base64 = Buffer.from(data).toString('base64');
+  //       var reply = new builder.Message(session)
+  //              .text('Your Kronos code is MSABC001 and your business development code is BDXYZ123.')
+  //              .addAttachment({ contentUrl: util.format('data:%s;base64,%s', contentType, base64),
+  //                               contentType: contentType,
+  //                               name: 'AI.png'
+  //                             });
+  //       session.send(reply);
+  //   }
+  //   console.log("Codes : "+results.entities[0].entity);
+  // })
 })
 .onDefault((session) => {
     session.send('no intents matched');
