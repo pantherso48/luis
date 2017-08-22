@@ -72,6 +72,30 @@ intents.matches('getBilling', (session, results) => {
     session.send('no intents matched');
 });
 
+intents.matches('getRequest', (session, results) => {
+  // session.userData.serverpath = 'http://26bb457d.ngrok.io';
+
+   session.say('Derek, I’ve create a request for a new Chronos Code for Pinnacle Financial.',
+               'Derek, I’ve create a request for a new Chronos Code for Pinnacle Financial',
+                { inputHint: builder.InputHint.expectingInput });
+})
+.onDefault((session) => {
+    session.send('no intents matched');
+});
+
+intents.matches('addPerson', (session, results) => {
+  // session.userData.serverpath = 'http://26bb457d.ngrok.io';
+
+   session.say('I have assigned Albert Smith to the Pinnacle project with Chronos code: PIN00123.',
+               'I have assigned Albert Smith to the Pinnacle project with Chronos code: PIN00123',
+                { inputHint: builder.InputHint.expectingInput });
+})
+.onDefault((session) => {
+    session.send('no intents matched');
+});
+
+
+
 
 
 // bot.dialog('findUserCodes', [
