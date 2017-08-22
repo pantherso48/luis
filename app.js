@@ -47,7 +47,7 @@ bot.dialog('/', intents);
 intents.matches('getBilling', (session, results) => {
   // session.userData.serverpath = 'http://26bb457d.ngrok.io';
 
-   session.send('Your Kronos code is MSABC001 and your business development code is BDXYZ123.');
+   session.say('Your Kronos code is MSABC001 and your business development code is BDXYZ123.','Your Kronos code is MSABC001 and your business development code is BDXYZ123.');
   // fs.readFile('./thought_leaders_in_ai.png', function (err, data) {
   //     if (err) {
   //         return session.send('Oops. Error reading file.');
