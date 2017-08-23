@@ -1,0 +1,19 @@
+fs.readFile('./banking.png', function (err, data) {
+    if (err) {
+        return session.send('Oops. Error reading file.');
+    }
+    if (results.entities[0].score >= .51) {
+      var contentType = 'image/png';
+      var base64 = Buffer.from(data).toString('base64');
+      var reply = new builder.Message(session)
+             .text('Your Kronos code is MSABC001 and your business development code is BDXYZ123.')
+             .speak('Your Kronos code is MSABC001 and your business development code is BDXYZ123.')
+             .inputHint(builder.InputHint.expectingInput)
+             .addAttachment({ contentUrl: util.format('data:%s;base64,%s', contentType, base64),
+                              contentType: contentType,
+                              name: 'AI.png'
+                            });
+      session.send(reply);
+  }
+  console.log("Codes : "+results.entities[0].entity);
+})

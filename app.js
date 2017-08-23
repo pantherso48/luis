@@ -36,9 +36,6 @@ bot.dialog('/', intents);
 
 intents.matches('getBilling', (session, results) => {
 
-   session.say('Your Kronos code is MSABC001 and your business development code is BDXYZ123.',
-               'Your code is MSABC001 and your business development code is BDXYZ123.',
-                { inputHint: builder.InputHint.expectingInput });
   fs.readFile('./banking.png', function (err, data) {
       if (err) {
           return session.send('Oops. Error reading file.');
