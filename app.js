@@ -6,6 +6,7 @@ var fs = require('fs');
 const path = require('path');
 var util = require('util');
 
+const model = process.env.LUIS_MODEL_URL;
 const publicPath = path.join(__dirname, '../luis/public');
 
 // Setup Restify Server
@@ -28,52 +29,41 @@ var connector = new builder.ChatConnector({
 server.post('/api/messages', connector.listen());
 var bot = new builder.UniversalBot(connector);
 
-// var bot = new builder.UniversalBot(connector, [
-//     function (session) {
-//         session.beginDialog('findUserCodes', session.userData.return);
-//     },
-//     function (session, results) {
-//         session.userData.return = results.response;
-//         // session.send('Your Kronos code is MSABC001 and your business development code is BDXYZ123', session.userData.return);
-//     }
-// ]);
-
-const model = 'https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/cea9975e-843b-416e-b23f-4fa5c7fb823f?subscription-key=81ca0da9998c4ab6a023ea7348fdea61&timezoneOffset=0&verbose=true';
 const recognizer = new builder.LuisRecognizer(model);
 const intents = new builder.IntentDialog({ recognizers: [recognizer] });
 
 bot.dialog('/', intents);
 
 intents.matches('getBilling', (session, results) => {
-  // session.userData.serverpath = 'http://26bb457d.ngrok.io';
 
    session.say('Your Kronos code is MSABC001 and your business development code is BDXYZ123.',
                'Your code is MSABC001 and your business development code is BDXYZ123.',
                 { inputHint: builder.InputHint.expectingInput });
-  // fs.readFile('./thought_leaders_in_ai.png', function (err, data) {
-  //     if (err) {
-  //         return session.send('Oops. Error reading file.');
-  //     }
-  //     if (results.entities[0].score >= .51) {
-  //       var contentType = 'image/png';
-  //       var base64 = Buffer.from(data).toString('base64');
-  //       var reply = new builder.Message(session)
-  //              .text('Your Kronos code is MSABC001 and your business development code is BDXYZ123.')
-  //              .addAttachment({ contentUrl: util.format('data:%s;base64,%s', contentType, base64),
-  //                               contentType: contentType,
-  //                               name: 'AI.png'
-  //                             });
-  //       session.send(reply);
-  //   }
-  //   console.log("Codes : "+results.entities[0].entity);
-  // })
+  fs.readFile('./banking.png', function (err, data) {
+      if (err) {
+          return session.send('Oops. Error reading file.');
+      }
+      if (results.entities[0].score >= .51) {
+        var contentType = 'image/png';
+        var base64 = Buffer.from(data).toString('base64');
+        var reply = new builder.Message(session)
+               .text('Your Kronos code is MSABC001 and your business development code is BDXYZ123.')
+               .speak('Your Kronos code is MSABC001 and your business development code is BDXYZ123.')
+               .inputHint(builder.InputHint.expectingInput)
+               .addAttachment({ contentUrl: util.format('data:%s;base64,%s', contentType, base64),
+                                contentType: contentType,
+                                name: 'AI.png'
+                              });
+        session.send(reply);
+    }
+    console.log("Codes : "+results.entities[0].entity);
+  })
 })
 .onDefault((session) => {
     session.send('no intents matched');
 });
 
 intents.matches('getRequest', (session, results) => {
-  // session.userData.serverpath = 'http://26bb457d.ngrok.io';
 
    session.say('Derek, I’ve create a request for a new Chronos Code for Pinnacle Financial.',
                'Derek, I’ve create a request for a new Chronos Code for Pinnacle Financial',
@@ -84,7 +74,6 @@ intents.matches('getRequest', (session, results) => {
 });
 
 intents.matches('addPerson', (session, results) => {
-  // session.userData.serverpath = 'http://26bb457d.ngrok.io';
 
    session.say('I have assigned Albert Smith to the Pinnacle project with Chronos code: PIN00123.',
                'I have assigned Albert Smith to the Pinnacle project with Chronos code: PIN00123',
