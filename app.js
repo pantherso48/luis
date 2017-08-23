@@ -36,6 +36,17 @@ bot.dialog('/', intents);
 
 intents.matches('getBilling', (session, results) => {
 
+  var hero = new builder.HeroCard(session)
+        .title('BotFramework Hero Card')
+        .subtitle('Your bots — wherever your users are talking')
+        .text('Build and connect intelligent bots to interact with your users naturally wherever they are, from text/sms to Skype, Slack, Office 365 mail and other popular services.')
+        .images([
+            builder.CardImage.create(session, 'https://sec.ch9.ms/ch9/7ff5/e07cfef0-aa3b-40bb-9baa-7c9ef8ff7ff5/buildreactionbotframework_960.jpg')
+        ])
+        .buttons([
+            builder.CardAction.openUrl(session, 'https://docs.microsoft.com/bot-framework', 'Get Started')
+        ]);
+
   fs.readFile('./banking.png', function (err, data) {
       if (err) {
           return session.send('Oops. Error reading file.');
@@ -47,10 +58,7 @@ intents.matches('getBilling', (session, results) => {
                .text('Your Kronos code is MSABC001 and your business development code is BDXYZ123.')
                .speak('Your Kronos code is MSABC001 and your business development code is BDXYZ123.')
                .inputHint(builder.InputHint.expectingInput)
-               .addAttachment({ contentUrl: util.format('data:%s;base64,%s', contentType, base64),
-                                contentType: contentType,
-                                name: 'AI.png'
-                              });
+               .addAttachment(hero);
         session.send(reply);
     }
     console.log("Codes : "+results.entities[0].entity);
