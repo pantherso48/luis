@@ -1,0 +1,33 @@
+{
+
+  "codes": {
+    "name": "Codes",
+    "questions": {
+      "msg": {
+        "name": "",
+        "canAdd": true,
+        "outputs": {
+          "response": ""
+        }
+      }
+    },
+    "answers": {
+      "msg": {
+        "name": "",
+        "canAdd": true,
+        "outputs": [
+          { "response": "Your Kronos code is MSABC001 and your business development code is BDXYZ123.",
+            "hero": {
+              "title": "Chronos Codes",
+              "subtitle": "Click the button to find the executive summary for Pinnacle Financial",
+              "text": "Some text about the project here."
+            }
+          },
+          { "response": "Would you like this information sent to you in an email?"},
+          { "response": "What email address?"},
+          { "response": "Okay, I won't send an email."}
+        ]
+      }
+    }
+  },
+}
